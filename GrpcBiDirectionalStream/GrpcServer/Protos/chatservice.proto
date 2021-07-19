@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcChatService";
+
+package greet;
+
+service ChatService {
+  rpc JoinToChatRoom (JoinRequest) returns (JoinResponse);
+  rpc SendMessage(stream ChatMessage) returns (stream ChatMessage);
+}
+
+message JoinRequest {
+  Customer customer = 1;
+}
+
+message JoinResponse {
+  int32 RoomId = 1;
+}
+
+message Customer {
+  string Id = 1;
+  string Name = 2;
+  string FontColor = 3;
+}
+
+message ChatMessage {
+  string CustomerId = 1;
+  string CustomerName = 5;
+  string Message = 2;
+  string Color = 3;
+  int32 RoomId = 4;
+}
